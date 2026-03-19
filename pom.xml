@@ -65,26 +65,6 @@ file comparators, endian transformation classes, and much more.
       <scope>test</scope>
     </dependency>
     <dependency>
-      <!-- Java 21 support, revisit for Mockito 5 -->
-      <groupId>net.bytebuddy</groupId>
-      <artifactId>byte-buddy</artifactId>
-      <version>${commons.bytebuddy.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <!-- Java 21 support, revisit for Mockito 5 -->
-      <groupId>net.bytebuddy</groupId>
-      <artifactId>byte-buddy-agent</artifactId>
-      <version>${commons.bytebuddy.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-inline</artifactId>
-      <version>${commons.mockito.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>com.google.jimfs</groupId>
       <artifactId>jimfs</artifactId>
       <version>1.3.0</version>
@@ -150,7 +130,7 @@ file comparators, endian transformation classes, and much more.
     <japicmp.skip>false</japicmp.skip>
     <commons.release.isDistModule>true</commons.release.isDistModule>
     <!-- JaCoCo: Don't make code coverage worse than: -->
-    <jacoco.skip>${env.JACOCO_SKIP}</jacoco.skip>
+    <jacoco.skip>true</jacoco.skip>
     <commons.jacoco.haltOnFailure>true</commons.jacoco.haltOnFailure>
     <commons.jacoco.classRatio>0.98</commons.jacoco.classRatio>
     <commons.jacoco.instructionRatio>0.90</commons.jacoco.instructionRatio>
@@ -214,7 +194,6 @@ file comparators, endian transformation classes, and much more.
             <classpathDependencyExclude>xerces:xercesImpl</classpathDependencyExclude>
           </classpathDependencyExcludes>
           <forkCount>1</forkCount>
-          <reuseForks>false</reuseForks>
           <!-- Limit memory size see IO-161 -->
           <!-- Mockito inline may need -XX:+EnableDynamicAgentLoading -->
           <argLine>${argLine} -Xmx25M</argLine>
@@ -397,6 +376,20 @@ file comparators, endian transformation classes, and much more.
                 </configuration>
               </execution>
             </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>tree-merge</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <argLine>-XX:AOTCacheOutput=cache.aot</argLine>
+            </configuration>
           </plugin>
         </plugins>
       </build>

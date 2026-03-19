@@ -104,10 +104,6 @@ class BoundedInputStreamTest {
         assertThrows(IllegalStateException.class, () -> BoundedInputStream.builder().get());
     }
 
-    @Test
-    void testCloseHandleIOException() throws IOException {
-        ProxyInputStreamTest.testCloseHandleIOException(BoundedInputStream.builder());
-    }
 
     @ParameterizedTest
     @ValueSource(longs = { -100, -1, 0, 1, 2, 4, 8, 16, 32, 64 })

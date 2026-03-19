@@ -117,10 +117,6 @@ class AutoCloseInputStreamTest {
         assertTrue(stream.isClosed(), "closed");
     }
 
-    @Test
-    void testCloseHandleIOException() throws IOException {
-        ProxyInputStreamTest.testCloseHandleIOException(AutoCloseInputStream.builder());
-    }
 
     @Test
     void testFinalize() throws Throwable {

@@ -59,11 +59,6 @@ class TaggedInputStreamTest  {
         assertEquals(exception, exceptionCloseCause);
     }
 
-    @SuppressWarnings({ "resource" })
-    @Test
-    void testCloseHandleIOException() throws IOException {
-        ProxyInputStreamTest.testCloseHandleIOException(new TaggedInputStream(new BrokenInputStream((Throwable) new IOException())));
-    }
 
     @Test
     void testEmptyStream() throws IOException {

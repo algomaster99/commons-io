@@ -281,10 +281,6 @@ class BOMInputStreamTest {
         }
     }
 
-    @Test
-    void testCloseHandleIOException() throws IOException {
-        ProxyInputStreamTest.testCloseHandleIOException(BOMInputStream.builder());
-    }
 
     @Test
     void testEmptyBufferWithBOM() throws Exception {

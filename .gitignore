@@ -9,6 +9,7 @@ release.properties
 
 
 site-content
+cache.aot
 /.classpath
 /.project
 /.settings/
